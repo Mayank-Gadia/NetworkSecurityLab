@@ -1,16 +1,18 @@
 #include <stdio.h>
-#include <math.h>
 
 // Function to find gcd
 int gcd(int a, int b) {
-    int temp;
-    while (1) {
-        temp = a % b;
-        if (temp == 0)
-            return b;
-        a = b;
-        b = temp;
+    int gcd = 1; // Initialize gcd to 1 (since 1 is a common divisor for any pair of integers)
+
+    // Iterate from 1 to the minimum of a and b
+    for (int i = 1; i <= (a < b ? a : b); i++) {
+        // If i divides both a and b without leaving a remainder, update gcd
+        if (a % i == 0 && b % i == 0) {
+            gcd = i;
+        }
     }
+    
+    return gcd;
 }
 
 // Function to find the modular inverse of e mod phi
@@ -27,12 +29,8 @@ int modInverse(int e, int phi) {
 // It returns (base^exponent) % mod
 long long modExp(long long base, long long exponent, long long mod) {
     long long result = 1;
-    base = base % mod;
-    while (exponent > 0) {
-        if (exponent % 2 == 1)
-            result = (result * base) % mod;
-        exponent = exponent >> 1;
-        base = (base * base) % mod;
+    for (long long i = 0; i < exponent; i++) {
+        result = (result * base) % mod;
     }
     return result;
 }
