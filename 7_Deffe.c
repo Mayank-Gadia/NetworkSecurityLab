@@ -1,23 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 long int P, alpha;
 
 // Function to calculate modular exponentiation (base^exp % modulus)
-long int mod_exp(long int base, long int exp, long int modulus)
-{
-	long int result = 1;
-	while (exp > 0)
-	{
-		if (exp % 2 == 1)
-		{
-			result = (result * base) % modulus;
-		}
-		base = (base * base) % modulus;
-		exp /= 2;
-	}
-	return result;
+long long mod_exp(long long base, long long exponent, long long mod) {
+    long long result = 1;
+    for (long long i = 0; i < exponent; i++) {
+        result = (result * base) % mod;
+    }
+    return result;
 }
 // Function to perform Diffie-Hellman Key Exchange
 void diffie_hellman(long int private_key,long int *public_key, long int alpha, long int P) 
