@@ -3,8 +3,6 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#define SIZE 26
-
 // Function to encrypt or decrypt the input string based on the key
 void encryption(char alph[], char key[], int encrypt) {
     int alen = strlen(alph);
@@ -17,7 +15,7 @@ void encryption(char alph[], char key[], int encrypt) {
             
             shift = encrypt ? shift : -shift;
             
-            alph[i] = (char)(((alph[i] - base + shift) + SIZE) % SIZE + base);
+            alph[i] = (char)(((alph[i] - base + shift) + 26) % 26 + base);
             j++;
         }
     }
