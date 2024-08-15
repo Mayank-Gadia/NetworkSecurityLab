@@ -1,5 +1,5 @@
-#include <ctype.h>
-#include <string.h>
+#include <ctype.h>   // isupper() islower() isdigit()
+#include <string.h>  // strcspn()
 #include <stdio.h>
 
 void encryption(char text[], int key);
