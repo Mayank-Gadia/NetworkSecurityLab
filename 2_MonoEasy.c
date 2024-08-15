@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
-void encryption(const char pt[], const char ct[], char p[], char c[]);
-void decryption(const char pt[], const char ct[], char c[], char d[]);
+void encryption(char pt[], char ct[], char p[], char c[]);
+void decryption(char pt[], char ct[], char c[], char d[]);
 
 int main() {
     char pt[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
@@ -15,6 +16,11 @@ int main() {
     fgets(p, sizeof(p), stdin);
     p[strcspn(p, "\n")] = '\0';  // Remove the newline character
 
+    // Convert plain text to uppercase
+    for (int i = 0; p[i] != '\0'; i++) {
+        p[i] = toupper(p[i]);
+    }
+
     // Converting plain text into cipher text (encryption)
     encryption(pt, ct, p, c);
     printf("Cipher text is: %s\n", c);
@@ -26,7 +32,7 @@ int main() {
     return 0;
 }
 
-void encryption(const char pt[], const char ct[], char p[], char c[]) {
+void encryption(char pt[], char ct[], char p[], char c[]) {
     int len = strlen(p);
     for (int i = 0; i < len; i++) {
         if (p[i] >= 'A' && p[i] <= 'Z') {  // Only process uppercase letters
@@ -43,7 +49,7 @@ void encryption(const char pt[], const char ct[], char p[], char c[]) {
     c[len] = '\0';  // Null-terminate the cipher text
 }
 
-void decryption(const char pt[], const char ct[], char c[], char d[]) {
+void decryption(char pt[], char ct[], char c[], char d[]) {
     int len = strlen(c);
     for (int i = 0; i < len; i++) {
         if (c[i] >= 'A' && c[i] <= 'Z') {  // Only process uppercase letters
