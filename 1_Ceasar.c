@@ -27,7 +27,7 @@ int main() {
             break;
         
         case 2:
-            decryption(text, key);
+            encryption(text, -key);
             break;
                 
         default:
@@ -53,22 +53,4 @@ void encryption(char text[], int key) {
     }
     
     printf("Encrypted msg is: %s\n", text);
-}
-
-void decryption(char text[], int key) {
-    for(int i = 0; text[i] != '\0'; i++) {
-        char ch = text[i];
-        
-        if(isupper(ch)) {
-            ch = (ch - 'A' - key + 26) % 26 + 'A';
-        } else if(islower(ch)) {
-            ch = (ch - 'a' - key + 26) % 26 + 'a';
-        } else if(isdigit(ch)) {
-            ch = (ch - '0' - key + 10) % 10 + '0';
-        }
-        
-        text[i] = ch;
-    }
-    
-    printf("Decrypted msg is: %s\n", text);
 }
