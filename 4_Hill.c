@@ -2,6 +2,28 @@
 #include <ctype.h>
 #include <stdio.h>
 
+void encryption(char msg[] , int key[][100]);
+
+int main() {
+    int key[100][100];
+    char msg[100];
+    printf("Enter the 3 * 3 matrix key: ");
+    
+    for(int i = 0 ; i < 3 ; i++){
+        for(int j = 0 ; j < 3 ; j++){
+            scanf("%d" , &key[i][j]);
+        }
+    }
+    
+    printf("Enter the msg: ");
+    scanf("%s" , msg);
+    
+    printf("The encrypted msg is: ");
+    encryption(msg , key);
+    
+    return 0;
+}
+
 void encryption(char msg[] , int key[][100]){
     
     int len = strlen(msg);
@@ -30,25 +52,5 @@ void encryption(char msg[] , int key[][100]){
     }
     
     printf("%s" , msg);
-}
-
-int main() {
-    int key[100][100];
-    char msg[100];
-    printf("Enter the 3 * 3 matrix key: ");
-    
-    for(int i = 0 ; i < 3 ; i++){
-        for(int j = 0 ; j < 3 ; j++){
-            scanf("%d" , &key[i][j]);
-        }
-    }
-    
-    printf("Enter the msg: ");
-    scanf("%s" , msg);
-    
-    printf("The encrypted msg is: ");
-    encryption(msg , key);
-    
-    return 0;
 }
 
